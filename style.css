@@ -484,3 +484,10 @@ header .logo span{
     font-size:26px !important;
   }
 }
+
+/* ADD TO CALENDAR — additive only */
+.calendar-actions{margin-top:12px}.calendar-button{background:transparent!important;color:var(--ivory)!important;border-color:rgba(228,211,163,.9)!important}.calendar-button:hover{background:var(--gold)!important;color:#fff!important}
+.calendar-menu{position:fixed;inset:0;z-index:20000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(20,28,24,.72);backdrop-filter:blur(7px)}.calendar-menu.show{display:flex}
+.calendar-menu-inner{position:relative;width:min(92vw,390px);padding:34px 24px 26px;background:var(--ivory);border:1px solid rgba(184,154,90,.7);box-shadow:0 20px 60px rgba(0,0,0,.28);text-align:center}.calendar-menu-inner h3{margin:0 0 8px;color:var(--green);font-size:36px}.calendar-menu-inner p{margin:0 0 18px;color:var(--brown);font-size:13px}
+.calendar-close{position:absolute;right:10px;top:5px;border:0;background:none;color:var(--green);font-size:30px;cursor:pointer}.calendar-choice{display:block;width:100%;margin:10px 0;padding:12px 16px;border:1px solid var(--gold);background:transparent;color:var(--green);font:600 10px Inter,sans-serif;letter-spacing:.12em;cursor:pointer}.calendar-choice:hover{background:var(--green);color:#fff}
+@media(max-width:600px){.calendar-menu-inner{padding:32px 20px 22px}.calendar-menu-inner h3{font-size:32px}}

@@ -103,3 +103,21 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("print-card-active");
   });
 });
+
+/* ADD TO CALENDAR — additive only */
+document.addEventListener("DOMContentLoaded",()=>{
+ const openBtn=document.getElementById("addToCalendar"),menu=document.getElementById("calendarMenu"),closeBtn=document.getElementById("calendarClose"),googleBtn=document.getElementById("googleCalendar"),icsBtn=document.getElementById("icsCalendar");
+ if(!openBtn||!menu||!closeBtn||!googleBtn||!icsBtn)return;
+ const title="Anisha & Srivatsan — Wedding",startUTC="20261025T023000Z",endUTC="20261025T040000Z";
+ const location="Haryana Bhavan, 1-8-179, Opposite LIC Building, Near HDFC Bank, Sarojini Devi Road, Secunderabad, Telangana, India";
+ const description="Wedding ceremony of Anisha & Srivatsan. #AnishaSrivatsanTirumanaVizaha";
+ const open=()=>{menu.classList.add("show");menu.setAttribute("aria-hidden","false");document.body.classList.add("modal-open")};
+ const close=()=>{menu.classList.remove("show");menu.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open")};
+ openBtn.addEventListener("click",open);closeBtn.addEventListener("click",close);menu.addEventListener("click",e=>{if(e.target===menu)close()});
+ googleBtn.addEventListener("click",()=>{const u="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+"&dates="+startUTC+"/"+endUTC+"&details="+encodeURIComponent(description)+"&location="+encodeURIComponent(location);window.open(u,"_blank","noopener,noreferrer");close()});
+ icsBtn.addEventListener("click",()=>{
+   const esc=s=>String(s).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;");
+   const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Anisha & Srivatsan//Wedding Invitation//EN","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT","UID:anisha-srivatsan-wedding-20261025@prsvas.github.io","DTSTAMP:20260821T000000Z","DTSTART:"+startUTC,"DTEND:"+endUTC,"SUMMARY:"+esc(title),"LOCATION:"+esc(location),"DESCRIPTION:"+esc(description),"STATUS:CONFIRMED","END:VEVENT","END:VCALENDAR"].join("\r\n");
+   const url=URL.createObjectURL(new Blob([ics],{type:"text/calendar;charset=utf-8"})),a=document.createElement("a");a.href=url;a.download="Anisha-Srivatsan-Wedding.ics";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);close();
+ });
+});
